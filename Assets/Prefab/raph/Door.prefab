@@ -24,7 +24,7 @@ GameObject:
   - component: {fileID: 23434175073171254}
   - component: {fileID: 114637919552576884}
   - component: {fileID: 54463079582127922}
-  m_Layer: 9
+  m_Layer: 12
   m_Name: Normal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -62,7 +62,7 @@ GameObject:
   - component: {fileID: 23554631857798602}
   - component: {fileID: 114845603345886606}
   - component: {fileID: 54606064139626068}
-  m_Layer: 10
+  m_Layer: 13
   m_Name: Perfect
   m_TagString: Untagged
   m_Icon: {fileID: 0}

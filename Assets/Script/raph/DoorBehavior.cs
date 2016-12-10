@@ -6,6 +6,7 @@ public class DoorBehavior : MonoBehaviour {
 
     List<Collider> pnjsNormal;
     List<Collider> pnjsPerfect;
+    public string inputKey;
 
     private void Awake()
     {
@@ -19,10 +20,28 @@ public class DoorBehavior : MonoBehaviour {
 	
 	void Update () {
         //Debug.Log(this.name + " " + pnjsNormal.Count + " " +pnjsPerfect.Count);
-        //INPUT
-
+        //INPUT DOOR
 
 	}
+
+    void playerPressedKey()
+    {
+        if(pnjsNormal.Count <= 0)
+        {
+            //Too early
+            GameObject.Find("GameController").GetComponent<WaveController>().missNote();
+
+            return;
+        }
+
+        foreach(Collider n in pnjsNormal)
+        {
+            foreach(Collider p in pnjsPerfect)
+            {
+
+            }
+        }
+    }
 
     public void NormalTriggerEnter(Collider other)
     {
@@ -39,7 +58,7 @@ public class DoorBehavior : MonoBehaviour {
     public void NormalTriggerExit(Collider other)
     {
         pnjsNormal.Remove(other);
-        Destroy(other.gameObject);
+        //Destroy(other.gameObject);
     }
 
     public void PerfectTriggerExit(Collider other)

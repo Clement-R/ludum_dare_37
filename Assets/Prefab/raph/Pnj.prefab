@@ -22,7 +22,7 @@ GameObject:
   - component: {fileID: 33724255158697278}
   - component: {fileID: 65146447004076978}
   - component: {fileID: 23420861053019170}
-  m_Layer: 8
+  m_Layer: 11
   m_Name: CollisionFeet
   m_TagString: Untagged
   m_Icon: {fileID: 0}

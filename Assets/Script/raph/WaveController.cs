@@ -12,6 +12,18 @@ public class WaveController : MonoBehaviour {
     private float startTime;
     private float currentTime;
 
+    private int nbrNoteOk;
+    private int nbrNotePerfect;
+    private int nbrNoteMissed;
+    public int nbrTotalNote;
+    private float ratio;
+
+    public int ptsOk;
+    public int ptsPerfect;
+    private int score;
+
+    public float TimeWalk = 1.0f;
+
     private void Awake()
     {
         currentIndex = 0;
@@ -39,11 +51,11 @@ public class WaveController : MonoBehaviour {
             return;
         Note current = listNotes[currentIndex];
         currentTime += Time.deltaTime;
-        //Debug.Log(startTime+ " " +current.time);
+        //Debug.Log("current time" + currentTime);
 
-		while((current.time + startTime) <= currentTime)
+        while ((current.time - TimeWalk + startTime) <= currentTime)
         {
-            GameObject o = Instantiate(pnjPrefab, spawns[current.door].transform.position, Quaternion.identity) as GameObject;
+            GameObject o = Instantiate(pnjPrefab, spawns[current.door].transform.position, Quaternion.identity) as GameObject; //Quaternion.LookRotation(direction); pour plus tard
             o.GetComponent<PnjBehavior>().target = doors[current.door];
             currentIndex++;
             if (currentIndex >= listNotes.Count)
@@ -51,4 +63,42 @@ public class WaveController : MonoBehaviour {
             current = listNotes[currentIndex];
         }
 	}
+    
+    public void missNote()
+    {
+        nbrNoteMissed++;
+        Debug.Log("current failures " + nbrNoteMissed);
+        updateRatio();
+    }
+
+    public void validNote(bool perfect)
+    {
+        /*
+        private int nbrNoteOk;
+    private int nbrNotePerfect;
+    private int nbrNoteMissed;
+    public int nbrTotalNote;
+    private float ratio;
+
+    public int ptsOk;
+    public int ptsPerfect;
+    private int score;*/
+        nbrNoteOk++;
+        nbrTotalNote++;
+        if (perfect)
+            nbrNotePerfect++;
+
+        updateScore();
+        updateRatio();
+    }
+
+    void updateScore()
+    {
+        score = nbrNoteOk * ptsOk + nbrNotePerfect * ptsPerfect;
+    }
+
+    void updateRatio()
+    {
+        ratio = ((nbrNoteOk + nbrNotePerfect) * 100) / nbrTotalNote;
+    }
 }
