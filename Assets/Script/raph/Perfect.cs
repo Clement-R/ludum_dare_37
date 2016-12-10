@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PerfectTriggerBehavior : MonoBehaviour {
+public class Perfect : MonoBehaviour {
 
-    private DoorBehavior parent;
+    private TheDoor parent;
 
     void Start()
     {
-        parent = transform.parent.GetComponent<DoorBehavior>();
+        parent = transform.parent.GetComponent<TheDoor>();
     }
 
     void OnTriggerEnter(Collider aCol)

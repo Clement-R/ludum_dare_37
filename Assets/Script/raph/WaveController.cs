@@ -83,10 +83,12 @@ public class WaveController : MonoBehaviour {
     public int ptsOk;
     public int ptsPerfect;
     private int score;*/
-        nbrNoteOk++;
+        
         nbrTotalNote++;
         if (perfect)
             nbrNotePerfect++;
+        else
+            nbrNoteOk++;
 
         updateScore();
         updateRatio();
@@ -95,10 +97,12 @@ public class WaveController : MonoBehaviour {
     void updateScore()
     {
         score = nbrNoteOk * ptsOk + nbrNotePerfect * ptsPerfect;
+        Debug.Log("New score: " + score);
     }
 
     void updateRatio()
     {
-        ratio = ((nbrNoteOk + nbrNotePerfect) * 100) / nbrTotalNote;
+        if(nbrTotalNote != 0)
+            ratio = ((nbrNoteOk + nbrNotePerfect) * 100) / nbrTotalNote;
     }
 }
