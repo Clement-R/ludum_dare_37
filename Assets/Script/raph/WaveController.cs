@@ -43,7 +43,7 @@ public class WaveController : MonoBehaviour {
 
 		while((current.time + startTime) <= currentTime)
         {
-            GameObject o = Instantiate(pnjPrefab, spawns[current.door].transform.position, Quaternion.identity);
+            GameObject o = Instantiate(pnjPrefab, spawns[current.door].transform.position, Quaternion.identity) as GameObject;
             o.GetComponent<PnjBehavior>().target = doors[current.door];
             currentIndex++;
             if (currentIndex >= listNotes.Count)
