@@ -2,7 +2,7 @@
 using System.Collections;
 
 namespace proto_clement {
-    public class CharacterBehavior : MonoBehaviour {
+    public class NoteBehavior : MonoBehaviour {
         public GameObject door;
 
         private Vector3 doorPosition;
@@ -16,6 +16,7 @@ namespace proto_clement {
             // Get destination and duration of the travel
             doorPosition = door.GetComponent<Transform>().position;
             timeToDoor = god.TimeWalk;
+            // Make the character move to the given point
             StartCoroutine(MoveOverSeconds(gameObject, doorPosition, timeToDoor));
         }
 

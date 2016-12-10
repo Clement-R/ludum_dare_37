@@ -22,7 +22,7 @@ GameObject:
   - 65: {fileID: 65000014010757650}
   m_Layer: 0
   m_Name: PerfectEntry
-  m_TagString: Untagged
+  m_TagString: PerfectTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -38,7 +38,7 @@ GameObject:
   - 65: {fileID: 65000011703244704}
   m_Layer: 0
   m_Name: Entry
-  m_TagString: Untagged
+  m_TagString: Entry
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
