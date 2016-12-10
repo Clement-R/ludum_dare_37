@@ -3,8 +3,7 @@ using System.Collections;
 
 public class DetectTrigger : MonoBehaviour {
     public bool isPerfectTriggered = false;
-
-    private bool isTriggered = false;
+    public bool isTriggered = false;
 
     void OnTriggerStay(Collider other) {
         if (other.tag == "Note") {

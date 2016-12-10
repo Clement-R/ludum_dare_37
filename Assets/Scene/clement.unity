@@ -374,7 +374,7 @@ Prefab:
     - target: {fileID: 114000012071072144, guid: 5fba91d1010302948b57ac53de442598,
         type: 2}
       propertyPath: TimeWalk
-      value: 6
+      value: 5
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5fba91d1010302948b57ac53de442598, type: 2}
