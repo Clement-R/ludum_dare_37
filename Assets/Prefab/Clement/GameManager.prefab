@@ -19,6 +19,8 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 4000013012662204}
+  - 114: {fileID: 114000010960975640}
+  - 114: {fileID: 114000012071072144}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -39,3 +41,30 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &114000010960975640
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012653286136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 867bfa026b2c05a4da3b70c05e82e3e6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  entryA: {fileID: 0}
+  entryX: {fileID: 0}
+  entryB: {fileID: 0}
+  entryY: {fileID: 0}
+--- !u!114 &114000012071072144
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1000012653286136}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d6a2395ef3e7e54fab8ce1d18e3f484, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  timeToDoor: 3
