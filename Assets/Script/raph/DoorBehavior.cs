@@ -18,7 +18,7 @@ public class DoorBehavior : MonoBehaviour {
 	}
 	
 	void Update () {
-        Debug.Log(this.name + " " + pnjsNormal.Count + " " +pnjsPerfect.Count);
+        //Debug.Log(this.name + " " + pnjsNormal.Count + " " +pnjsPerfect.Count);
         //INPUT
 
 
