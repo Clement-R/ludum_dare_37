@@ -7,7 +7,6 @@ public class TheDoor : MonoBehaviour {
     public List<Collider> pnjsPreNormal;
     public List<Collider> pnjsPostNormal;
     public List<Collider> pnjsPerfect;
-    WaveController waveController;
 
     public string inputKey;
 
@@ -20,20 +19,20 @@ public class TheDoor : MonoBehaviour {
 
     void Start()
     {
-        waveController = GameObject.Find("GameController").GetComponent<WaveController>();
+        //waveController = GameObject.Find("GameController").GetComponent<WaveController>();
     }
 
-
-    //A mettre dans input detector
-    void playerPressedKey()
+    public void playNote(int height)
     {
-        if (pnjsPreNormal.Count <= 0 && pnjsPerfect.Count <= 0 && pnjsPostNormal.Count <= 0)
+        int index = height;
+        if (height == -1)
+            index = Random.Range(0, 4);
+        AudioSource[] audios = GetComponents<AudioSource>();
+        if(index < audios.Length)
         {
-            //Too early
-            waveController.missNote();
-            return;
+            //if(!audios[index].isPlaying)
+                audios[index].Play();
         }
-
     }
 
     public void PreNormalTriggerEnter(Collider other)
@@ -71,5 +70,6 @@ public class TheDoor : MonoBehaviour {
         Debug.Log("post normal exit " + other.name);
         pnjsPostNormal.Remove(other);
         other.transform.parent.GetComponent<PnjBehavior>().passedLastCollider();
+        GameObject.Find("GameController").GetComponent<WaveController>().missNote();
     }
 }

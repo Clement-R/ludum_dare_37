@@ -284,11 +284,15 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1815442287110056}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 759f856cc876b3a4f90af39f41ee4863, type: 3}
+  m_Script: {fileID: 11500000, guid: f0cfba597ba157f4db8b8ae8c57dfbf5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  pnjsPreNormal: []
+  pnjsPostNormal: []
+  pnjsPerfect: []
+  inputKey: 
 --- !u!114 &114637919552576884
 MonoBehaviour:
   m_ObjectHideFlags: 1

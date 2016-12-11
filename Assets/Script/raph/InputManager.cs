@@ -2,7 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class InputManager : MonoBehaviour {
+public class InputManager : MonoBehaviour
+{
 
     public GameObject entryA;
     public GameObject entryX;
@@ -26,7 +27,10 @@ public class InputManager : MonoBehaviour {
         waveControlller = GameObject.Find("GameController").GetComponent<WaveController>();
     }
 
-    void processColliders(TheDoor door)
+    Collider lastCollider = null;
+    List<Collider> removeMe = new List<Collider>();
+
+    void processDoor(TheDoor door)
     {
         //Check touch nothing
         if (door.pnjsPreNormal.Count <= 0 && door.pnjsPerfect.Count <= 0 && door.pnjsPostNormal.Count <= 0)
@@ -35,64 +39,74 @@ public class InputManager : MonoBehaviour {
             GameObject.Find("GameController").GetComponent<WaveController>().missNote();
             return;
         }
+
+        lastCollider = null;
+        bool thereWasPerfect = false;
+
         //Check perfect
-        List<Collider> removeMe = new List<Collider>();
-        List<Collider> temp = door.pnjsPerfect;
-        foreach (Collider col in temp) {
-            waveControlller.validNote(true);
-
-            removeMe.Add(col);
-            door.pnjsPostNormal.Remove(col);
-            door.pnjsPreNormal.Remove(col);
-
-            col.transform.parent.GetComponent<PnjBehavior>().wasChecked();
+        if (door.pnjsPerfect.Count > 0)
+        {
+            Debug.Log("Perfect");
+            processColliders(door.pnjsPerfect, door, true);
+            thereWasPerfect = true;
         }
-        foreach (Collider s in removeMe)
-            door.pnjsPerfect.Remove(s);
-        removeMe.Clear();
         //Check Post
-        temp = door.pnjsPostNormal;
-        foreach (Collider col in temp)
+        if (door.pnjsPostNormal.Count > 0)
         {
-            waveControlller.validNote(false);
-            removeMe.Add(col);
-            col.transform.parent.GetComponent<PnjBehavior>().wasChecked();
+            Debug.Log("Post");
+            processColliders(door.pnjsPostNormal, door, false);
         }
-        foreach (Collider s in removeMe)
-            door.pnjsPostNormal.Remove(s);
-        removeMe.Clear();
         //Check Pre
-        temp = door.pnjsPreNormal;
+        if (!thereWasPerfect && door.pnjsPreNormal.Count > 0)
+        {
+            Debug.Log("Pre");
+            processColliders(door.pnjsPreNormal, door, false);
+        }
+        door.playNote(lastCollider.transform.parent.GetComponent<PnjBehavior>().forceHeight);
+    }
+
+    void processColliders(List<Collider> temp, TheDoor door, bool perfect)
+    {
         foreach (Collider col in temp)
         {
-            waveControlller.validNote(false);
+            waveControlller.validNote(perfect);
             removeMe.Add(col);
+            //Peut etre dans un des deux autres colliders
+            if (perfect)
+            {
+                door.pnjsPostNormal.Remove(col);
+                door.pnjsPreNormal.Remove(col);
+            }
+
+            lastCollider = col;
             col.transform.parent.GetComponent<PnjBehavior>().wasChecked();
+            col.transform.GetComponent<Collider>().enabled = false;
         }
         foreach (Collider s in removeMe)
-            door.pnjsPreNormal.Remove(s);
+            temp.Remove(s);
+        removeMe.Clear();
     }
 
     void Update()
     {
         if (Input.GetButtonDown("ButtonA"))
         {
-            processColliders(theDoorA);
+            processDoor(theDoorA);
         }
 
         if (Input.GetButtonDown("ButtonX"))
         {
-            processColliders(theDoorX);
+            processDoor(theDoorX);
         }
 
         if (Input.GetButtonDown("ButtonB"))
         {
-            processColliders(theDoorB);
+            processDoor(theDoorB);
         }
 
         if (Input.GetButtonDown("ButtonY"))
         {
-            processColliders(theDoorY);
+            processDoor(theDoorY);
         }
     }
 }

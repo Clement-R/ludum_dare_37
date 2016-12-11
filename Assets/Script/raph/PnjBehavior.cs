@@ -5,7 +5,10 @@ using UnityEngine;
 public class PnjBehavior : MonoBehaviour {
 
     public float speed;
+
     public GameObject target;
+    public int forceHeight;
+
     private Vector3 targetVector;
 
     private float timeToDoor = 1.0f;
@@ -37,6 +40,7 @@ public class PnjBehavior : MonoBehaviour {
 
     public IEnumerator MoveOverSeconds(GameObject objectToMove, Vector3 end, float seconds)
     {
+        end = new Vector3(end.x, initY, end.z);
         float distance = Vector3.Distance(this.transform.position, end);
         targetVector = -(this.transform.position - end).normalized;
         speed = distance / seconds;
@@ -47,7 +51,6 @@ public class PnjBehavior : MonoBehaviour {
         while (elapsedTime < seconds)
         {
             move = Vector3.Lerp(startingPos, end, (elapsedTime / seconds));
-            move.y = initY;
             transform.position = move;
             elapsedTime += Time.deltaTime;
             yield return new WaitForEndOfFrame();

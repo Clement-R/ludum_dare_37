@@ -6,7 +6,7 @@ public class WaveController : MonoBehaviour {
     public TextAsset waveJson;
     public GameObject pnjPrefab;
     public GameObject[] spawns;
-    public GameObject[] doors;
+    public GameObject[] targets;
     private List<Note> listNotes;
     private int currentIndex;
     private float startTime;
@@ -56,7 +56,9 @@ public class WaveController : MonoBehaviour {
         while ((current.time - TimeWalk + startTime) <= currentTime)
         {
             GameObject o = Instantiate(pnjPrefab, spawns[current.door].transform.position, Quaternion.identity) as GameObject; //Quaternion.LookRotation(direction); pour plus tard
-            o.GetComponent<PnjBehavior>().target = doors[current.door];
+            //o.transform.rotation = Quaternion.LookRotation((targets[current.door].transform.position - o.transform.position).normalized);
+            o.GetComponent<PnjBehavior>().target = targets[current.door];
+            o.GetComponent<PnjBehavior>().forceHeight = current.height;
             currentIndex++;
             if (currentIndex >= listNotes.Count)
                 return;
